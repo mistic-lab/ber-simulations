@@ -8,7 +8,7 @@ class Modulation(object):
     Responsible for simulating and measuring bit error rates for a given 
     modulation transceiver block.
     """
-    def __init__(self,mod_block,options={},title="Untitled",n0_scale= 1.0):
+    def __init__(self,mod_block,options={},title="Untitled"):
         """Constructor for a Modulation object
         
         Arguments:
@@ -20,7 +20,6 @@ class Modulation(object):
         """
         object.__init__(self)
         self.__thread_lock = Lock()
-        self.n0_scale = n0_scale
         self.title = title
         self.mod_block = mod_block
         self.mod_options = options
@@ -107,7 +106,7 @@ class Modulation(object):
         ebno = 10.0**(ebno_db/10.0)
         n_0 = self.mod_eb/ebno
         mod = self._create_mod_block()     
-        ber_graph = BERMeasurementGraph(mod,self.mod_delay,n_0*self.n0_scale)
+        ber_graph = BERMeasurementGraph(mod,self.mod_delay,n_0)
         ber = ber_graph.measure(on_progress=on_progress) 
         return ber
 

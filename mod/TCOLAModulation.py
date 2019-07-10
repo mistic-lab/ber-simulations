@@ -2,8 +2,23 @@ from .flowgraphs import TCOLAModWrapper
 from .Modulation import Modulation
 
 class TCOLAModulation(Modulation):
-    def __init__(self,mod_block,m,r=1,options={},title="Untitled",n0_scale=1.0):
-        Modulation.__init__(self,mod_block,options=options,title="%s TCOLA (M=%d,R=%d)"%(title,m,r),n0_scale=n0_scale)
+    """TCOLA Modulation extends the original Modulation to wrap
+    the modulation transceiver block with TCOLA
+    """
+    def __init__(self,mod_block,m,r=1,options={},title="Untitled"):
+        """Creates a TCOLA Modulation from a modulation transceiver block
+        
+        Arguments:
+            Modulation {[type]} -- [description]
+            mod_block {Modulation Transceiver} -- The Modulation Transceiver Block
+            m {int} -- Window Size
+        
+        Keyword Arguments:
+            r {int} -- Hop Size (default: {1})
+            options {dict} -- Options to be passed to the Modulation Transceiver (default: {{}})
+            title {str} -- Title of Modulation (default: {"Untitled"})
+        """
+        Modulation.__init__(self,mod_block,options=options,title="%s TCOLA (M=%d,R=%d)"%(title,m,r))
         self.M = m
         self.R = r
     

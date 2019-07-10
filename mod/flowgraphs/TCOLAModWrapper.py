@@ -1,6 +1,11 @@
 from gnuradio import gr
 from gnuradio import blocks
-import tcola
+
+try:
+    import tcola
+except ImportError:
+    print("Error: Program requires gr-tcola (https://github.com/mistic-lab/gr-tcola")
+    sys.exit(1)
 
 
 class TCOLAModWrapper(gr.hier_block2):
